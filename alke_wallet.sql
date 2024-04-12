@@ -2,29 +2,29 @@
 
 CREATE TABLE User (
 user_id 	INT PRIMARY KEY NOT NULL,
-name 		VARCHAR(50) NOT NULL,
+name 		  VARCHAR(50) NOT NULL,
 email 		VARCHAR(50) NOT NULL,
 password 	VARCHAR(50) NOT NULL,
 balance 	DECIMAL(10,2)
 );
 
 CREATE TABLE Currency (
-currency_id 		INT PRIMARY KEY NOT NULL,
+currency_id 		  INT PRIMARY KEY NOT NULL,
 currency_name 		VARCHAR(50) NOT NULL,
 currency_symbol 	VARCHAR(10) NOT NULL
 );
 
 /* Esta tabla se crea al final, porque tiene referencias de las dos tablas anteriores*/
 CREATE TABLE Transaction (
-transaction_id 			    INT PRIMARY KEY NOT NULL,
-sender_user_id 			    INT NOT NULL,
-receiver_user_id 		    INT NOT NULL,
+transaction_id 			      INT PRIMARY KEY NOT NULL,
+sender_user_id 			      INT NOT NULL,
+receiver_user_id 		      INT NOT NULL,
 transaction_currency_id 	INT NOT NULL,
 FOREIGN KEY (sender_user_id) REFERENCES User(user_id),
 FOREIGN KEY (receiver_user_id) REFERENCES User(user_id),
 FOREIGN KEY (transaction_currency_id) REFERENCES Currency(currency_id),
-amount 				        DECIMAL(10,2) NOT NULL,
-transaction_date 		    DATE
+amount 				            DECIMAL(10,2) NOT NULL,
+transaction_date 		      DATE
 );
 
 
